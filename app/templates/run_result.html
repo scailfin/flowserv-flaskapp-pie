@@ -1,0 +1,50 @@
+{% extends "template.html" %}
+
+{% block title %}Output Images{% endblock %}
+
+{% block main %}
+
+<div class="container">
+
+    <h1>{{ app.name()|e }}</h1>
+    <h4>{{ app.description()|e }}</h4>
+
+    {% for obj, url in files.values() %}
+        <div>
+            <h4>{{obj.title}}</h4>
+
+            {% if obj.format.get('type') == 'plaintext' %}
+                <pre>{{obj.text()}}</pre>
+            {% elif obj.format.get('type') == 'image' %}
+                <div><img src= "{{url}}"></div>
+            {% elif obj.format.get('type') == 'csv' %}
+                <table>
+                    {% set columns, rows = obj.data() %}
+                    <tr>
+                        {% for col in columns %}
+                        <th>{{col}}</th>
+                        {% endfor %}
+                    </tr>
+                    {% for row in rows %}
+                    <tr>
+                        {% for cell in row %}
+                        <td>{{cell}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+
+            {% if obj.caption %}
+                <small>{{obj.caption }}</small>
+            {% endif %}
+
+            <p><a href="{{ url }}">Download</a><p>
+        </div>
+    {% endfor %}
+
+    <p><a href="{{ archive }}">Archive</a></p>
+
+</div>
+
+{% endblock %}
