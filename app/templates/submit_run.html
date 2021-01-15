@@ -1,0 +1,71 @@
+{% extends "template.html" %}
+
+{% block title %}Run{% endblock %}
+
+{% block main %}
+
+<div class="container">
+
+    <h1>{{ app.name()|e }}</h1>
+    <h4>{{ app.description()|e }}</h4>
+
+    <form action="/runs" method="POST" enctype="multipart/form-data">
+
+        {% for para in app.parameters().values() %}
+            <div class="submit-para">
+                <label>{{ para.label|e }}</label>
+                {% if para.is_file() %}
+                    <div class="custom-file">
+                        <input
+                            oninput="handleFileSelect(this, '{{para.name}}');"
+                            type="file"
+                            class="custom-file-input"
+                            multiple="false"
+                            name={{ para.name }}
+                            id={{ para.name }}
+                            id={{ para.name }}
+                            autocomplete="off"
+                        >
+                        <label class="custom-file-label" for={{para.name}}>
+                            Select image...
+                        </label>
+                    </div>
+                {% else %}
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder={{ para.default|e }}
+                        aria-label="hole fill area"
+                        name={{ para.name }}
+                    >
+                {% endif %}
+            {% if para.help %}
+                <small class="form-text text-muted">{{ para.help|e }}</small>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <div class="submit-footer">
+            <button type="submit" class="btn btn-primary">Run</button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script>
+
+        function handleFileSelect(element, name) {
+            const files = element && element.files;
+            if (!files) return;
+            var lbl = $("label[for='" + name + "']");
+            lbl.text(files[0].name);
+        }
+
+    </script>
+
+{% endblock %}
