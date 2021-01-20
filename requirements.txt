@@ -1,3 +1,4 @@
 flowserv-core>=0.7.0
 flask
 flask_cors
+git+git://github.com/Siegallab/PIE.git@pieflow
