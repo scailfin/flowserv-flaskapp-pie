@@ -66,3 +66,5 @@ To upload a colony image and run the analysis workflow go to `http://127.0.0.1:5
 .. figure:: https://raw.githubusercontent.com/scailfin/flowserv-flaskapp-pie/master/app/static/img/screenshots/run.png
   :align: center
   :alt: Workflow Run Submission Screen
+  
+The PIE repository contains `sample images <https://github.com/Siegallab/PIE/tree/master/PIE_test_data/IN>`_ that can be uploaded when submitting a workflow run.
