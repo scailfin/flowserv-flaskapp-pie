@@ -11,7 +11,7 @@ Installation & Configuration
 Install Project Sources and Dependencies
 ----------------------------------------
 
-We recommend using a virtual environment for the installation (e.g., `conda create -n pieflask python=3.8 pip` if using Anaconda). At the time of writing, the following commands would not work with Python 3.9 (but only 3.7 or 3.8). After activating the virtual environment (e.g., `conda activate pieflask`) first clone the repository and then install the project requirements:
+We recommend using a virtual environment for the installation (e.g., ```conda create -n pieflask python=3.8 pip``` if using Anaconda). At the time of writing, the following commands would not work with Python 3.9 (but only 3.7 or 3.8). After activating the virtual environment (e.g., ```conda activate pieflask```) first clone the repository and then install the project requirements:
 
 .. code-block:: bash
 
@@ -23,7 +23,7 @@ We recommend using a virtual environment for the installation (e.g., `conda crea
 Configure and Setup Flowserv
 ----------------------------
 
-The next step is to setup your local **flowserv** instance. The following will maintain all files in a subfolder `.flowsev` within the cloned repository. Start by setting the environment variables that configure **flowserv**.
+The next step is to setup your local **flowserv** instance. The following will maintain all files in a subfolder ```.flowsev``` within the cloned repository. Start by setting the environment variables that configure **flowserv**.
 
 .. code-block:: bash
 
@@ -46,6 +46,7 @@ After finishing the setup, make sure to set the following environment variables:
 
 .. code-block:: bash
 
+    # Set the workflow identifier.
     export FLOWSERV_APP=piesingle
     # Context that Flask runs in. Defaults to `production` but here it is
     # recommended to switch to the development environment.
