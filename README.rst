@@ -44,18 +44,6 @@ Run The Web Server
 
 After finishing the setup, make sure to set the following environment variables:
 
-Configuration
-=============
-
-Set the context that Flask runs in using the environment variable **FLASK_ENV**. The variable defaults to `production`. To switch to the development environment and enable debug mode:
-
-.. code-block:: bash
-
-
-
-Set the **FLOWSERV_APP** environment variable (and other variables that configure **flowserv**) before running the flask server.
-
-
 .. code-block:: bash
 
     export FLOWSERV_APP=piesingle
