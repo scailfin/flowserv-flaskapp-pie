@@ -5,46 +5,50 @@
 {% block main %}
 
 <div class="container">
+    <div class="row">
+        <div class="col">
 
-    <h1>{{ app.name()|e }}</h1>
-    <h4>{{ app.description()|e }}</h4>
+            <h1>Colony Recognition Output Result</h1>
+            <hr>
 
-    {% for obj, url in files.values() %}
-        <div>
-            <h4>{{obj.title}}</h4>
+            <h4>Boundary Image</h4>
+            <hr>
 
-            {% if obj.format.get('type') == 'plaintext' %}
-                <pre>{{obj.text()}}</pre>
-            {% elif obj.format.get('type') == 'image' %}
-                <div><img src= "{{url}}"></div>
-            {% elif obj.format.get('type') == 'csv' %}
-                <table>
-                    {% set columns, rows = obj.data() %}
-                    <tr>
-                        {% for col in columns %}
-                        <th>{{col}}</th>
-                        {% endfor %}
-                    </tr>
-                    {% for row in rows %}
-                    <tr>
-                        {% for cell in row %}
-                        <td>{{cell}}</td>
-                        {% endfor %}
-                    </tr>
+            {% set _, url = files['boundary-image'] %}
+            <img src= "{{url}}" width="800">
+
+            <!--url list to images under the unique user directory-->
+            <p>Link to download processed images and csv files</p>
+            {% for obj, url in files.values() %}
+            <a href="{{ url }}">{{ obj.title }}</a><br>
+            {% endfor %}
+            <a href="{{ archive }}">Archive</a>
+
+            <h4>Table of Colony Properties</h4>
+            <hr>
+
+            <table>
+
+                {% set obj, _ = files['colony-properties'] %}
+                {% set columns, rows = obj.data() %}
+                <tr>
+                    {% for col in columns %}
+                    <th>{{col}}</th>
                     {% endfor %}
-                </table>
-            {% endif %}
+                </tr>
 
-            {% if obj.caption %}
-                <small>{{obj.caption }}</small>
-            {% endif %}
+                {% for row in rows %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{cell}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
 
-            <p><a href="{{ url }}">Download</a><p>
+            </table>
+
         </div>
-    {% endfor %}
-
-    <p><a href="{{ archive }}">Archive</a></p>
-
+    </div>
 </div>
 
 {% endblock %}
